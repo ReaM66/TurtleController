@@ -17,30 +17,18 @@ class Turtle(object):
         try:
             with open(filename, "r") as inFile:
                 for line in inFile.readlines():
-                    comment = line.find(';')
+                    comment = line.find(';')  # Don't read comments after ';'
                     if comment != -1:
                         line = line[:comment]
                     line = line.strip()
-                    if len(line) > 0:
+                    if len(line) > 0:  # Don't read lines of length 0.
                         lines_out.append(line)
         except FileNotFoundError:
             print(f"File {filename} not found.")
-        if lines_out[0].startswith("name"):
-            self.set_name(lines_out[0].split()[1])
-            lines_out = lines_out[1:]
         self.commands = lines_out
-        self.queue = lines_out
 
     def Run(self):
         """Run all commands in buffer"""
-        """
-        print(f"{self.name} is ready to go!")
-        self.queue = self.commands
-        for i in range(len(self.queue)):
-            self.run_command(self.queue.pop[0])
-        print(f"{self.name} is finished!")
-        """
-
         print(f"{self.name} is ready to go!")
         self.pc = 0
         while self.pc < len(self.commands):
@@ -61,13 +49,6 @@ class Turtle(object):
 
     def StepThrough(self):
         """Run all commands, but wait for input between each command."""
-        """
-        self.queue = self.commands
-        for i in range(len(self.queue)):
-            input("Press Enter.")
-            self.run_command(self.queue[0])
-        """
-
         self.pc = 0
         while self.pc < len(self.commands):
             input("Press Enter.")
@@ -137,6 +118,10 @@ class Turtle(object):
             self.pendown()
         elif command in ["pen"]:
             self.switchpen()
+        elif command in ["name", "setname"]:
+            self.set_name(data[0])
+        elif command in ["speed", "setspeed"]:
+            self.set_speed(data[0])
         else:
             print(f"{self.name} doesn't know how to do {command}")
 
