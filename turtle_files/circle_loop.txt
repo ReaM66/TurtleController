@@ -1,0 +1,7 @@
+name Loopy
+loop 10 
+forwards 40
+left 18 
+circle 10
+left 18
+endloop 

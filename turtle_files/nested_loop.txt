@@ -1,0 +1,12 @@
+name Loopy
+
+loop 10 top ;loops MUST be named at both the top and the bottom of the loop
+forwards 40
+
+loop 4 square ;loop syntax is "loop [number of iterations] [loop name]"
+left 90 
+forwards 10
+endloop square
+
+left 36
+endloop top

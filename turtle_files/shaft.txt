@@ -1,0 +1,13 @@
+name Shafty
+turn 90 
+circle 20 270 ;right nut
+turn 90
+forward 50 ;shaft
+circle 20 90 ;tip
+turn 90
+stamp ;end
+turn -90
+circle 20 90 ;tip
+forward 50 ;shaft
+turn 90
+circle 20 270 ;left nut

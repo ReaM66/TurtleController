@@ -1,0 +1,8 @@
+lop 180 looptop
+fwd 100 
+trn 90 
+crc 100 
+trn 90
+fwd 100 
+trn 2
+end looptop

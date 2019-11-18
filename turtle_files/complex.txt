@@ -1,0 +1,15 @@
+penup 
+goto 0 -200
+pendown
+face 90
+turn 90
+circle 10 
+turn -90
+turn 1
+
+startloop 90 top 
+forward 400 
+turn 89
+circle 10
+turn 89
+endloop top

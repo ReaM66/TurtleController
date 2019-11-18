@@ -1,0 +1,21 @@
+penup
+goto 100 100
+pendown
+startloop 4 bigloop
+startloop 4 toploop
+startloop 8 ploop
+forwards 100
+right 90
+circle 10
+turn 180
+circle 25 180
+right 90
+forwards 50
+right 45
+endloop ploop
+forwards 200
+left 90
+endloop toploop
+turn 90
+forwards 200
+endloop bigloop

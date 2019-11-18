@@ -1,0 +1,6 @@
+forwards 10
+loop 6
+forwards 10
+left 60
+endloop
+forwards 20
