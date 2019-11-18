@@ -140,12 +140,6 @@ class Turtle(object):
         else:
             print(f"{self.name} doesn't know how to do {command}")
 
-    def run_loop(self, start, end, iter):
-        loop_commands = self.commands[start+1:end]
-        for i in range(iter):
-            for command in loop_commands:
-                self.run_command(command)
-
     def forward(self, data):
         """Go forwards a certain amount."""
         self.mrTurtle.forward(data)
