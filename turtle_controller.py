@@ -168,7 +168,7 @@ class Turtle(object):
             data = (data[0], data[1], data[2])
         else:
             return None
-        self.mrTurtle.colour(data)
+        self.mrTurtle.color(data)
 
 
     def penup(self):

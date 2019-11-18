@@ -1,3 +1,7 @@
+name David
+speed 9
+color blue
+
 loop 4 fourthloop
 loop 4 thirdloop
 loop 4 secondloop
@@ -44,3 +48,9 @@ penup
 forwards 20
 pendown
 endloop lastloop
+penup
+forwards 20
+pendown
+left 90
+circle 20
+right 90
