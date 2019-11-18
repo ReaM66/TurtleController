@@ -1,9 +1,11 @@
 import turtle
+import random
 
 class Turtle(object):
     def __init__(self, command_filename="", turtle_name="Terry", speed=6):
         """Initialise turtle with filename, name and a speed."""
         self.mrTurtle = turtle.Turtle()
+        turtle.colormode(255)
         self.set_name(turtle_name)
         self.set_speed(speed)
         if command_filename:
@@ -124,6 +126,8 @@ class Turtle(object):
             self.set_speed(data[0])
         elif command == "run":
             self.Run()
+        elif command == "randcolour":
+            self.randomcolour()
         else:
             print(f"{self.name} doesn't know how to do {command}")
 
@@ -162,6 +166,14 @@ class Turtle(object):
             steps = data[2]
         self.mrTurtle.circle(radius, extent, steps)
 
+    def randomcolour(self):
+        """Chooses random rgb values and assigns to colour."""
+        r = random.randrange(1, 255)
+        g = random.randrange(1, 255)
+        b = random.randrange(1, 255)
+        self.colour((r,g,b))
+
+
     def colour(self, data):
         """Modify turtle colour."""
         if len(data) == 1:
@@ -171,7 +183,6 @@ class Turtle(object):
         else:
             return None
         self.mrTurtle.color(data)
-
 
     def penup(self):
         """Pen up."""
@@ -200,7 +211,7 @@ class Turtle(object):
     def set_speed(self, speed):
         """Set the movement speed of turtle."""
         self.mrTurtle.speed(speed)
-        
+
     def set_name(self, name):
         """Set the turtle name"""
         self.name = name

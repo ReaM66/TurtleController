@@ -1,0 +1,147 @@
+name spinny
+
+penup
+face 270
+forwards 200
+face 0
+pendown
+
+
+loop 8 circletop
+randcolour
+speed 1
+circle 01 180
+stamp
+circle 02 180
+circle 03 180
+circle 04 180
+circle 05 180
+circle 06 180
+circle 07 180
+circle 08 180
+circle 09 180
+circle 10 180
+circle 11 180
+randcolour
+stamp
+speed 2
+circle 12 180
+circle 13 180
+circle 14 180
+circle 15 180
+circle 16 180
+circle 17 180
+circle 18 180
+circle 19 180
+circle 20 180
+circle 21 180
+randcolour
+stamp
+speed 3
+circle 22 180
+circle 23 180
+circle 24 180
+circle 25 180
+circle 26 180
+circle 27 180
+circle 28 180
+circle 29 180
+circle 30 180
+circle 31 180
+randcolour
+stamp
+speed 4
+circle 32 180
+circle 33 180
+circle 34 180
+circle 35 180
+circle 36 180
+circle 37 180
+circle 38 180
+circle 39 180
+circle 40 180
+circle 41 180
+randcolour
+stamp
+speed 5
+circle 42 180
+circle 43 180
+circle 44 180
+circle 45 180
+circle 46 180
+circle 47 180
+circle 48 180
+circle 49 180
+circle 50 180
+circle 51 180
+randcolour
+stamp
+speed 6
+circle 52 180
+circle 53 180
+circle 54 180
+circle 55 180
+circle 56 180
+circle 57 180
+circle 58 180
+circle 59 180
+circle 60 180
+circle 61 180
+randcolour
+stamp
+speed 7
+circle 62 180
+circle 63 180
+circle 64 180
+circle 65 180
+circle 66 180
+circle 67 180
+circle 68 180
+circle 69 180
+circle 70 180
+circle 71 180
+randcolour
+stamp
+speed 8
+circle 72 180
+circle 73 180
+circle 74 180
+circle 75 180
+circle 76 180
+circle 77 180
+circle 78 180
+circle 79 180
+circle 80 180
+circle 81 180
+randcolour
+stamp
+speed 9
+circle 82 180
+circle 83 180
+circle 84 180
+circle 85 180
+circle 86 180
+circle 87 180
+circle 88 180
+circle 89 180
+circle 90 180
+circle 91 180
+randcolour
+stamp
+speed 0
+circle 92 180
+circle 93 180
+circle 94 180
+circle 95 180
+circle 96 180
+circle 97 180
+circle 98 180
+circle 99 180
+circle 100 180
+circle 101 180
+
+colour black
+forwards 150
+left 135
+
+endloop circletop
