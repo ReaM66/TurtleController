@@ -1,7 +1,17 @@
 name spinny
+
+penup
+face 270
+forwards 200
+face 0
+pendown
+
+
+loop 8 circletop
 colour black
 speed 1
 circle 01 180
+stamp
 circle 02 180
 circle 03 180
 circle 04 180
@@ -13,6 +23,7 @@ circle 09 180
 circle 10 180
 circle 11 180
 colour blue
+stamp
 speed 2
 circle 12 180
 circle 13 180
@@ -25,6 +36,7 @@ circle 19 180
 circle 20 180
 circle 21 180
 colour green
+stamp
 speed 3
 circle 22 180
 circle 23 180
@@ -37,6 +49,7 @@ circle 29 180
 circle 30 180
 circle 31 180
 colour red
+stamp
 speed 4
 circle 32 180
 circle 33 180
@@ -49,6 +62,7 @@ circle 39 180
 circle 40 180
 circle 41 180
 colour yellow
+stamp
 speed 5
 circle 42 180
 circle 43 180
@@ -61,6 +75,7 @@ circle 49 180
 circle 50 180
 circle 51 180
 colour pink
+stamp
 speed 6
 circle 52 180
 circle 53 180
@@ -73,6 +88,7 @@ circle 59 180
 circle 60 180
 circle 61 180
 color purple
+stamp
 speed 7
 circle 62 180
 circle 63 180
@@ -85,6 +101,7 @@ circle 69 180
 circle 70 180
 circle 71 180
 colour orange
+stamp
 speed 8
 circle 72 180
 circle 73 180
@@ -97,6 +114,7 @@ circle 79 180
 circle 80 180
 circle 81 180
 colour blue
+stamp
 speed 9
 circle 82 180
 circle 83 180
@@ -109,6 +127,7 @@ circle 89 180
 circle 90 180
 circle 91 180
 colour black
+stamp
 speed 0
 circle 92 180
 circle 93 180
@@ -118,5 +137,10 @@ circle 96 180
 circle 97 180
 circle 98 180
 circle 99 180
-
 circle 100 180
+circle 101 180
+
+forwards 150
+left 135
+
+endloop circletop
