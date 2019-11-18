@@ -11,7 +11,7 @@ At command line:
 In python interactive shell:
 ```
 > import turtle_controller
-> turt = turtle_controller.TurtleController()
+> turt = turtle_controller.Turtle()
 > turt.load_commands("turtle_files\\square.txt")
 > turt.Run()
 > turt.run_command("forward 20")
