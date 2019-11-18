@@ -16,6 +16,7 @@ In python interactive shell:
 > turt.Run()
 > turt.run_command("forward 20")
 ```
+NOTE: These instructions and labels are not case-sensitive.
 
 
 Instructions:

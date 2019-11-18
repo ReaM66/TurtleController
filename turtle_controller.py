@@ -4,8 +4,8 @@ class Turtle(object):
     def __init__(self, command_filename="", turtle_name="Terry", speed=6):
         """Initialise turtle with filename, name and a speed."""
         self.mrTurtle = turtle.Turtle()
-        self.set_speed(speed)
         self.set_name(turtle_name)
+        self.set_speed(speed)
         if command_filename:
             self.load_commands(command_filename)
         self.pc = 0
@@ -122,6 +122,8 @@ class Turtle(object):
             self.set_name(data[0])
         elif command in ["speed", "setspeed"]:
             self.set_speed(data[0])
+        elif command == "run":
+            self.Run()
         else:
             print(f"{self.name} doesn't know how to do {command}")
 
@@ -198,7 +200,7 @@ class Turtle(object):
     def set_speed(self, speed):
         """Set the movement speed of turtle."""
         self.mrTurtle.speed(speed)
-
+        
     def set_name(self, name):
         """Set the turtle name"""
         self.name = name

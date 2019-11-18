@@ -9,4 +9,13 @@ if __name__ == '__main__':
         filename = "turtle_files\\shaft.txt"
     turtle = turtle_controller.Turtle(filename)
     turtle.Run()
-    turtle.done()
+    try:
+        while True:
+            command = input("command: ")
+            if command in ["exit", "quit"]:
+                print("Exiting...")
+                break
+            else:
+                turtle.run_command(command)
+    except KeyboardInterrupt:
+        print("Exiting...")
