@@ -182,6 +182,7 @@ class Turtle(object):
             data = (data[0], data[1], data[2])
         else:
             return None
+        print("Colour set to {}".format(data))
         self.mrTurtle.color(data)
 
     def penup(self):

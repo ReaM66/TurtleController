@@ -69,3 +69,6 @@ Instructions:
 
 - speed, setspeed [speed]
   - Sets the movement speed of the Turtle, between 1 and 9.
+
+- randcolour
+  - Sets turtle pen colour to random RGB colour.

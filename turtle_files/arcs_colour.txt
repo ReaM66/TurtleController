@@ -1,5 +1,5 @@
 name David
-speed 9
+speed 0
 color blue
 
 loop 4 fourthloop

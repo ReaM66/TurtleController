@@ -1,0 +1,45 @@
+var gridwidth 50
+var gridheight 30
+var unitwidth 5
+var unitheight 10
+
+var totwidth gridwidth
+mult totwidth unitwidth
+
+var halfwidth totwidth
+div halfwidth 2
+
+var halfheight gridheight
+mult halfheight unitheight
+div halfheight 2
+
+penup
+backward halfwidth
+right 90
+forward halfheight
+left 90
+pendown
+
+;speed 0
+
+loop gridheight
+loop gridwidth
+forward unitwidth
+left 90
+forward unitheight
+left 90
+forward unitwidth
+left 90
+forward unitheight
+left 90
+forward unitwidth
+endloop
+
+penup
+backward totwidth
+left 90
+forward unitheight
+right 90
+pendown
+
+endloop

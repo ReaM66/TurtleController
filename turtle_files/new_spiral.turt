@@ -1,0 +1,12 @@
+var spiral_radius 100
+var width 100
+var i 0
+
+speed 0
+
+loop spiral_radius
+add i 1
+randomcolour
+forward width
+circle i 180
+endloop

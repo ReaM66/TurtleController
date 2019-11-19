@@ -1,0 +1,31 @@
+name James
+
+loop 10
+forward 10
+left 90
+forward 10
+right 90
+endloop
+
+var variable 20
+
+add 10 10
+
+add variable 20
+
+sub variable 4
+
+sub 4 4
+
+stamp
+square 20
+circle 10
+left 180
+
+loop 100
+forward 1
+left 90
+forward 1
+right 90
+endloop
+done

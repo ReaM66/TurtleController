@@ -1,0 +1,20 @@
+var i 1
+speed 0
+
+penup
+setposition 0 100
+pendown
+
+loop 100
+randomcolour
+circle i 180
+add i 1
+endloop
+
+neg i
+
+loop 100
+randomcolour
+circle i 180
+add i 1
+endloop
