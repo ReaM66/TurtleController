@@ -18,6 +18,8 @@ In python interactive shell:
 ```
 NOTE: These instructions and labels are not case-sensitive.
 
+The example text files provided do not all work properly. Some of them are for the old version of the program. .txt and .turt files are equivalent.
+
 
 Movement Instructions:
 - forward [distance]
