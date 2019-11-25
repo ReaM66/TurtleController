@@ -1,55 +1,56 @@
 name David
+shape turtle
 speed 9
 color blue
 
-loop 4 fourthloop
-loop 4 thirdloop
-loop 4 secondloop
-loop 4 firstloop
+loop 4
+loop 4
+loop 4
+loop 4
 circle 10 180
 stamp
 left 90
 penup
-forwards 20
+forward 20
 pendown
-endloop firstloop
+endloop
 penup
-forwards 20
+forward 20
 pendown
 left 90
 circle 20
 right 90
 penup
-forwards 20
+forward 20
 pendown
 left 90
-endloop secondloop
-turn 180
+endloop
+left 180
 penup
-forwards 40
+forward 40
 pendown
 right 90
-endloop thirdloop
+endloop
 
-forwards 160
+forward 160
 left 90
-endloop fourthloop
+endloop
 
 penup
-forwards 80
+forward 80
 left 90
 forwards 80
 pendown
 
-loop 4 lastloop
+loop 4
 circle 10 180
 left 90
 penup
-forwards 20
+forward 20
 pendown
-endloop lastloop
+endloop
 penup
-forwards 20
+forward 20
 pendown
 left 90
 circle 20

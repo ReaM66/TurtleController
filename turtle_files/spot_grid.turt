@@ -1,0 +1,62 @@
+name Grid-Lad
+speed 9
+
+var grid_width 10
+var grid_height 10
+var unit_width 10
+var unit_height 10
+
+var tot_width grid_width
+mult tot_width unit_width
+
+var half_width grid_width
+mult half_width unit_width
+div half_width 2
+
+var half_height grid_height
+mult half_height unit_height
+div half_height 2
+
+var half_unit_width unit_width
+div half_unit_width 2
+
+var half_unit_height unit_height
+div half_unit_height 2
+
+penup
+backward half_width
+right 90
+forward half_height
+left 90
+pendown
+
+loop grid_height
+loop grid_width
+forward unit_width
+left 90
+forward unit_height
+left 90
+forward unit_width
+left 90
+forward unit_height
+left 90
+penup
+forward unit_width
+left 90
+forward half_unit_height
+right 90
+stamp
+right 90
+forward half_unit_height
+left 90
+pendown
+endloop
+
+penup
+backward tot_width
+left 90
+forward unit_height
+right 90
+pendown
+
+endloop

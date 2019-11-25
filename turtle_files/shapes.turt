@@ -1,0 +1,56 @@
+penup
+
+shape classic
+stamp
+forward 40
+
+shape triangle
+stamp
+forward 40
+
+shape arrow
+stamp
+forward 40
+
+shape turtle
+stamp
+forward 40
+
+shape circle
+stamp
+forward 40
+
+shape square
+stamp
+forward 40
+
+backward 240
+left 90
+forward 40
+right 90
+
+pendown
+
+shape classic
+stamp
+forward 40
+
+shape triangle
+stamp
+forward 40
+
+shape arrow
+stamp
+forward 40
+
+shape turtle
+stamp
+forward 40
+
+shape circle
+stamp
+forward 40
+
+shape square
+stamp
+forward 40

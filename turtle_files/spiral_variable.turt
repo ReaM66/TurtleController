@@ -1,0 +1,47 @@
+; Turtle init
+name spinny
+shape circle
+speed 0
+
+; Variable init
+var circle_angle 180
+var band_width 49
+var num_bands 2
+var num_spirals 6
+
+var dist num_bands
+mult dist band_width
+mult dist 2
+
+var angle 360
+div angle num_spirals
+
+; Location init
+penup
+setheading 270
+;forward 100
+backward 100
+;setheading 180
+setheading 0
+;forward 100
+backward 100
+pendown
+
+; Main Body
+loop num_spirals ;Loop number of times for total number of spirals
+var i 1
+
+loop num_bands
+randomcolour
+
+loop band_width
+stamp
+circle i circle_angle
+add i 1
+endloop
+
+endloop
+
+forward dist
+right angle
+endloop

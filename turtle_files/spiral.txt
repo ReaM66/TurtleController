@@ -1,9 +1,9 @@
 name spinny
 
 penup
-face 270
+setheading 270
 forwards 200
-face 0
+setheading 0
 pendown
 
 

@@ -1,170 +1,172 @@
 import turtle
 import random
 
-class Turtle(object):
-    def __init__(self, command_filename="", turtle_name="Terry", speed=6):
+class Turtle(turtle.Turtle):
+    keywords = {"forward", "backward", "left", "right", "circle", "square", "loop",
+                "endloop", "setposition", "goto", "setx", "sety", "reset", "setheading",
+                "undo", "penup", "pendown", "switchpen", "shape", "stamp", "dot",
+                "colour", "randomcolour", "name", "speed", "var", "del", "add", "sub",
+                "neg", "mult", "div", "input", "done", "output"}
+    def __init__(self, commands=[], turtle_name="Terry", speed=6, shape="classic"):
         """Initialise turtle with filename, name and a speed."""
-        self.mrTurtle = turtle.Turtle()
+        super().__init__()
         turtle.colormode(255)
-        self.set_name(turtle_name)
-        self.set_speed(speed)
-        if command_filename:
-            self.load_commands(command_filename)
-        self.pc = 0
-        self.loop_counters = {}
+        self._name = turtle_name
+        super().speed(speed)
+        super().shape(shape)
+        self.commands = commands
+        self._pc = 0
+        self._loop_stack = []
+        self._variables = {'x':0, 'y':0}
 
-    def load_commands(self, filename):
-        """Load the command file and set self.commands"""
-        lines_out = []
-        try:
-            with open(filename, "r") as inFile:
-                for line in inFile.readlines():
-                    comment = line.find(';')  # Don't read comments after ';'
-                    if comment != -1:
-                        line = line[:comment]
-                    line = line.strip()
-                    if len(line) > 0:  # Don't read lines of length 0.
-                        lines_out.append(line)
-        except FileNotFoundError:
-            print(f"File {filename} not found.")
-        self.commands = lines_out
+    def set_commands(self, commands, append=False):
+        """Sets commands. Will either add them to commands or overwrite."""
+        if append:
+            self.commands.extend(commands)
+        else:
+            self.commands = commands
 
-    def Run(self):
+    def run(self):
         """Run all commands in buffer"""
-        print(f"{self.name} is ready to go!")
-        self.pc = 0
-        while self.pc < len(self.commands):
-            self.run_command(self.commands[self.pc])
-            self.pc += 1
-        print(f"{self.name} is finished!")
-
-    def Step(self, steps=1):
-        """Step through specified number of commands. 1 if no number specified."""
-        for i in range(steps):
-            try:
-                self.run_command(self.commands[self.pc])
-                self.pc += 1
-            except IndexError:
-                self.pc = 0
-                self.run_command(self.commands[self.pc])
-                self.pc += 1
-
-    def StepThrough(self):
-        """Run all commands, but wait for input between each command."""
-        self.pc = 0
-        while self.pc < len(self.commands):
-            input("Press Enter.")
-            self.run_command(self.commands[self.pc])
-            self.pc += 1
-
-    def queue_command(self, command):
-        """Add a command to the buffer"""
-        self.commands.append(command)
+        print(f"{self._name} is ready to go!")
+        self._pc = 0
+        while self._pc < len(self.commands):
+            self.run_command(self.commands[self._pc])
+            self._pc += 1
+            yield (self._pc < len(self.commands))
+        print(f"{self._name} is finished!")
 
     def run_command(self, command):
-        """Send 1 command to turtle. Big switch case handles command."""
-        print(f"{self.name} is trying {command}")
-        command = command.lower()
+        """Send 1 command to turtle. If command is the name of a function it is executed."""
+        print(f"{self._name} is trying {command}")
+        location = self.position()
+        self._variables['x'] = location[0]
+        self._variables['y'] = location[1]
+        #print(f"Variables: {self._variables}")
+
         try:
-            command = command.split(" ")
-            if len(command) > 1:
-                data = [convert(item) for item in command[1:]]
+            command, *data = command.split(" ")
+            if command in ['var', 'add', 'sub', 'mult', 'div', 'neg']:
+                data = list(map(self.convert, data))
             else:
-                data = None
-            command = command[0]
+                data = list(map(self.convert_vars, data))
         except:
-            print(f"Error: {self.name} could not perform command {command}")
+            print(f"Error: {self._name} could not perform command {command}")
             return None
-
-        if command in ["forward", "forwards", "f", "fwd"]:
-            self.forward(data[0])
-        elif command in ["backward", "backwards", "back", "b", "bck"]:
-            self.backward(data[0])
-        elif command in ["left", "l", "lft"]:
-            self.turn(-data[0])
-        elif command in ["right", "r", "turn", "rgt", "trn"]:
-            self.turn(data[0])
-        elif command in ["move", "goto", "mv", "mov"]:
-            self.set_position(data)
-        elif command in ["reset", "origin", "centre", "cnt"]:
-            self.set_position([0, 0])
-        elif command in ["circle", "crc"]:
-            self.circle(data)
-        elif command in ["stamp", "print", "prt", "smp"]:
-            self.stamp()
-        elif command in ["undo", "und"]:
-            if data is None:
-                self.undo(1)
-            else:
-                self.undo(data[0])
-        elif command in ["face", "setheading", "fac"]:
-            self.face(data[0])
-        elif command in ["loop", "startloop", "lop"]:
-            if data[1] in self.loop_counters:
-                pass
-            else:
-                self.loop_counters[data[1]] = [data[0], self.pc]
-        elif command in ["endloop", "end"]:
-            loop_name = data[0]
-            loop_data = self.loop_counters[loop_name]
-            if loop_data[0] > 1:
-                self.pc = loop_data[1]
-                self.loop_counters[loop_name][0] -= 1
-            else:
-                del self.loop_counters[loop_name]
-        elif command in ["colour", "color", "setcolour", "clr"]:
-            self.colour(data)
-        elif command in ["penup", "up"]:
-            self.penup()
-        elif command in ["pendown"]:
-            self.pendown()
-        elif command in ["pen"]:
-            self.switchpen()
-        elif command in ["name", "setname"]:
-            self.set_name(data[0])
-        elif command in ["speed", "setspeed"]:
-            self.set_speed(data[0])
-        elif command == "run":
-            self.Run()
-        elif command == "randcolour":
-            self.randomcolour()
+        if command in self.keywords:
+            getattr(self, command)(*data)
         else:
-            print(f"{self.name} doesn't know how to do {command}")
+            print(f"{self._name} doesn't know how to do {command}.")
 
-    def forward(self, data):
-        """Go forwards a certain amount."""
-        self.mrTurtle.forward(data)
+    def var(self, name, data=0):
+        """Assigns a variable."""
+        if isinstance(data, str):
+            data = self._variables[data]
+        self._variables[name] = data
 
-    def backward(self, data):
-        """Go backwards"""
-        self.mrTurtle.backward(data)
+    def input(self, name, default=0):
+        """Takes an input and assigns it to variable."""
+        try:
+            inp = int(input("Input value for {}:".format(name)))
+        except ValueError:
+            if isinstance(default, str):
+                default = self._variables[default]
+            inp = default
 
-    def turn(self, data):
-        """Turn clockwise specified amount in degrees. Commands 'left' and 'right' both
-        map to this function. Commands for 'left' are made negative."""
-        self.mrTurtle.right(data)
+        self._variables[name] = inp
 
-    def face(self, data):
-        """Face a certain heading."""
-        self.mrTurtle.setheading(data)
+    def add(self, first, second):
+        """Adds data in second to first. First must be a variable."""
+        try:
+            if isinstance(second, str):
+                second = self._variables[second]
+            self._variables[first] += second
+        except:
+            print(f"Could not add together {first} + {second}")
 
-    def set_position(self, data):
-        """Move turtle to coordinates"""
-        x = data[0]
-        y = data[1]
-        self.mrTurtle.setposition(x, y)
+    def sub(self, first, second):
+        """Subtracts data in second from first. First is the variable where the result
+        is stored."""
+        try:
+            if isinstance(second, str):
+                second = self._variables[second]
+            self._variables[first] -= second
+        except:
+            print(f"Could not subtract {first} - {second}")
 
-    def circle(self, data):
+    def mult(self, first, second):
+        """Multiply a variable by another number. The second number may be a variable or
+        a literal. The result is stored in the original varable."""
+        try:
+            if isinstance(second, str):
+                second = self._variables[second]
+            first_num = self._variables[first]
+            self._variables[first] = int(first_num * second)
+        except:
+            print(f"Could not multiply {first} * {second}")
+
+    def div(self, first, second):
+        """Divide a variable by another number. The second number may be a variable or
+        a literal. The result is stored in the original varable."""
+        try:
+            if isinstance(second, str):
+                second = self._variables[second]
+            first_num = self._variables[first]
+            self._variables[first] = int(first_num / second)
+        except:
+            print(f"Could not divide {first} / {second}")
+
+    def neg(self, variable):
+        """Negate value of a variable"""
+        try:
+            val = self._variables[variable]
+            self._variables[variable] = -1*val
+        except:
+            print(f"Could not negate {variable}")
+
+    def loop(self, iterations):
+        """Initialise loop"""
+        self._loop_stack.append([iterations, self._pc])
+
+    def endloop(self):
+        """Decrement and restart loop, or end loop."""
+        try:
+            n, start = self._loop_stack[-1]
+        except IndexError:
+            print("No loops remaining.")
+            return
+        if n == 1:
+            self._loop_stack.pop()
+        else:
+            self._loop_stack[-1][0] -= 1
+            self._pc = start
+
+    def circle(self, radius, extent=None, steps=None):
         """Draw a circle with the built in turtle circle function."""
-        radius = data[0]
-        extent = None
-        steps = None
-        if len(data) == 2:
-            extent = data[1]
-        if len(data) == 3:
-            extent = data[1]
-            steps = data[2]
-        self.mrTurtle.circle(radius, extent, steps)
+        super().circle(radius, extent, steps)
+
+    def square(self, length, extent=4):
+        """Draw a square with given side length. Extent is the number of sides to draw.
+        square(length, extent=2) would draw a single right angle. A negative value for
+        extent will draw the square clockwise."""
+        if extent < 0:
+            extent = abs(extent)
+            for i in range(extent):
+                self.forward(length)
+                self.right(90)
+        else:
+            for i in range(extent):
+                self.forward(length)
+                self.left(90)
+
+    def reset(self):
+        """Reset turtle to origin."""
+        self.home()
+
+    def colour(self, args):
+        """Sets colour"""
+        print(f"Colour set to {args}")
+        super().color(args)
 
     def randomcolour(self):
         """Chooses random rgb values and assigns to colour."""
@@ -173,76 +175,62 @@ class Turtle(object):
         b = random.randrange(1, 255)
         self.colour((r,g,b))
 
-
-    def colour(self, data):
-        """Modify turtle colour."""
-        if len(data) == 1:
-            data = data[0]
-        elif len(data) == 3:
-            data = (data[0], data[1], data[2])
-        else:
-            return None
-        print("Colour set to {}".format(data))
-        self.mrTurtle.color(data)
-
-    def penup(self):
-        """Pen up."""
-        self.mrTurtle.penup()
-
-    def pendown(self):
-        """Pen down."""
-        self.mrTurtle.pendown()
-
     def switchpen(self):
         """Flip pen state."""
-        if self.mrTurtle.isdown():
-            self.mrTurtle.penup()
+        if self.isdown():
+            self.penup()
         else:
-            self.mrTurtle.pendown()
+            self.pendown()
 
-    def stamp(self):
-        """Stamp a copy of turtle."""
-        self.mrTurtle.stamp()
+    def name(self, new_name):
+        """Set turtle name."""
+        self._name = new_name
 
-    def undo(self, num):
+    def undo(self, num=1):
         """Undo specified number of commands"""
         for i in range(num):
-            self.mrTurtle.undo()
-
-    def set_speed(self, speed):
-        """Set the movement speed of turtle."""
-        self.mrTurtle.speed(speed)
-
-    def set_name(self, name):
-        """Set the turtle name"""
-        self.name = name
+            super().undo()
 
     def done(self):
         """Forces window to stay open after completion. Function for runturtle.py. No
         more commands can be executed after this one."""
         turtle.done()
 
-
-def convert(input):
-    """
-    Converts a string to an int or float.
-    Converts a list of strings into a list of strings, ints or floats.
-    Args:
-        input (str, list[str]): string or list of strings to attempt to convert.
-    Returns:
-        (str, int, float, list[...]): Depending on data contained in input.
-    """
-    if isinstance(input, str):
-        input = [input]
-    converted = []
-    for item in input:
-        try:
-            if "." in item:
-                converted.append(float(item))
+    def convert_vars(self, input):
+        """Calls convert, but resolves string variables too."""
+        input = self.convert(input)
+        if not isinstance(input, list):
+            input = [input]
+        converted = []
+        for item in input:
+            if item in self._variables:
+                converted.append(self._variables[item])
             else:
-                converted.append(int(item))
-        except ValueError:
-            converted.append(item)
-    if len(converted) == 1:
-        converted = converted[0]
-    return converted
+                converted.append(item)
+        if len(converted) == 1:
+            converted = converted[0]
+        return converted
+
+    def convert(self, input):
+        """
+        Converts a string to an int or float.
+        Converts a list of strings into a list of strings, ints or floats.
+        Args:
+            input (str, list[str]): string or list of strings to attempt to convert.
+        Returns:
+            (str, int, float, list[...]): Depending on data contained in input.
+        """
+        if not isinstance(input, list):
+            input = [input]
+        converted = []
+        for item in input:
+            try:
+                if "." in item:
+                    converted.append(float(item))
+                else:
+                    converted.append(int(item))
+            except ValueError:
+                converted.append(item)
+        if len(converted) == 1:
+            converted = converted[0]
+        return converted

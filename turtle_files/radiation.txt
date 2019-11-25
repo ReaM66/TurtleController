@@ -1,0 +1,50 @@
+speed 9
+
+var radius 10
+var second_radius 1.5
+var outer_radius 5
+var half_radius 0.5
+
+mult second_radius radius ;second_radius is now radius * 1.5
+mult outer_radius radius ;outer_radius is now radius * 5
+mult half_radius radius
+
+var straight_length outer_radius
+sub straight_length second_radius
+
+penup
+goto half_radius 0
+setheading 90
+pendown
+
+circle radius
+
+right 90
+penup
+forward half_radius
+left 90
+pendown
+
+loop 6
+right 90
+forward straight_length
+right 180
+forward straight_length
+right 90
+circle second_radius 60
+switchpen
+endloop
+
+right 90
+forward straight_length
+left 90
+
+loop 6
+circle outer_radius 60
+left 90
+forward straight_length
+left 180
+forward straight_length
+left 90
+switchpen
+endloop

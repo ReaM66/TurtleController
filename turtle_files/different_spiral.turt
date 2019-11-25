@@ -1,0 +1,38 @@
+var i 1
+var increment 1
+var ang 370
+var loops 400
+speed 0
+
+penup
+right 90
+;forward 100
+left 90
+pendown
+
+loop loops
+;randomcolour
+add i increment
+circle i ang
+;stamp
+endloop
+
+;div loops 4
+;loop loops
+;colour red
+;add i increment
+;stamp
+;circle i ang
+;colour green
+;add i increment
+;stamp
+;circle i ang
+;colour blue
+;add i increment
+;stamp
+;circle i ang
+;colour yellow
+;add i increment
+;stamp
+;circle i ang
+;endloop

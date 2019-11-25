@@ -1,15 +1,20 @@
 name spinny
 speed 0
-var spiral_rad 10
-var num_spirals 60
+var spiral_rad 50
+var num_spirals 20
 
 var fwd_dist spiral_rad
 mult fwd_dist 2
 var angle 360
 div angle num_spirals
 
+penup
+goto -100 -100
+pendown
+
 left 180
 loop num_spirals
+randomcolour
 var i 0
 loop spiral_rad
 add i 1

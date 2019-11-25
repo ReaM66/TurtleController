@@ -1,5 +1,5 @@
 import sys
-import turtle_controller_two
+import turtle_controller
 
 def load_commands(filename):
     """Load the command file and set self.commands"""
@@ -25,12 +25,12 @@ if __name__ == '__main__':
         print(f"{filename} can't be found. You get shaft instead.")
         filename = "turtle_files\\shaft.txt"
     commands = load_commands(filename)
-    turtle = turtle_controller_two.Turtle(commands)
+    turtle = turtle_controller.Turtle(commands)
     for res in turtle.run():
         pass
 
     while True:
-        command = input(": ")
+        command = input(": ").strip()
         if command == "quit":
             print("Quitting...")
             break
