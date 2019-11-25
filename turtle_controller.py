@@ -6,7 +6,7 @@ class Turtle(turtle.Turtle):
                 "endloop", "setposition", "goto", "setx", "sety", "reset", "setheading",
                 "undo", "penup", "pendown", "switchpen", "shape", "stamp", "dot",
                 "colour", "randomcolour", "name", "speed", "var", "del", "add", "sub",
-                "neg", "mult", "div", "input", "done", "output"}
+                "neg", "mult", "div", "input", "done"}
     def __init__(self, commands=[], turtle_name="Terry", speed=6, shape="classic"):
         """Initialise turtle with filename, name and a speed."""
         super().__init__()

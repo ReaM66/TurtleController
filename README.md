@@ -19,56 +19,104 @@ In python interactive shell:
 NOTE: These instructions and labels are not case-sensitive.
 
 
-Instructions:
-- forward, forwards, f, fwd [distance]
+Movement Instructions:
+- forward [distance]
   - Move turtle forwards [distance] amount.
 
-- backward, backwards, b, bck, back [distance]
+- backward [distance]
   - Move turtle backwards [distance] amount.
 
-- left, l, lft [amount]
+- left [amount]
   - Rotate turtle counter clockwise [amount] degrees
 
-- right, r, rgt, turn, trn [amount]
+- right [amount]
   - Rotate turtle clockwise [amount] degrees
 
-- move, goto, mv, mov [x] [y]
-  - Set turtle position to [[x], [y]]
-
-- reset, origin, centre, cnt
-  - return turtle to [0, 0]
-
-- circle, crc [radius] [extent] [steps]
+- circle [radius] [extent] [steps]
   - Draw a circle starting at a point on its edge.
   - Extent is in degrees and dictates how much of the circle to move around.
 
-- stamp, print, prt, smp  
-  - Stamp an image of the turtle onto the page.
+- square [side_length] [extent]
+  - Draw a square counter-clockwise with side_length
+  - Extent is the number of sides to draw.
 
-- undo, und [number]
-  - Undo [number] of previous moves. If no number is specified then 1 move is undone.
+- goto, setposition [x] [y]
+  - Set turtle position to [[x], [y]]
 
-- face, setheading, fac [bearing]
+- setx [x]
+  - set x coordinate to [x]
+
+- sety [y]
+  - set y coordinate to [y]
+
+- setheading [bearing]
   - Set turtle to face [bearing]. 0 is East/Right. 90 is North/Up
 
-- loop, startloop, lop [num_iterations] [name]
-  - Start a loop with number of iterations specified and [name]
+- reset
+  - return turtle to [0, 0]
 
-- endloop, end [name]
-  - End loop with [name]. This is required.
+Control Instructions:
+- loop [num_iterations]
+  - Start a loop with number of iterations specified
 
-- penup, pendown, pen
-  - Sets pen up, down or flips pen state
+- endloop
+  - Decrement or end current loop on stack. This is required.
 
-- colour, color, setcolour, col [colour]
+- var [variable_name] [value]
+  - Creates a variable with [variable_name] and [value]
+
+- input [variable_name] [default_value]
+  - Take input for a variable from the command line
+  - default_value is optional and a null input will send this.
+
+- add [varaible_name] [addition]
+  - Adds together the value of [variable_name] and [addition]
+  - Result is stored in [variable_name]
+
+- sub [varaible_name] [subtraction]
+  - Subtracts [subtraction] from the value of [variable_name]
+  - Result is stored in [variable_name]
+
+- mult [varaible_name] [multiplication]
+  - Multiplies the value of [variable_name] by [multiplication]
+  - Result is stored in [variable_name]
+
+- div [varaible_name] [division]
+  - Divides the variable in [variable_name] by [division]
+  - Result is stored in [variable_name]
+
+- neg [variable_name]
+  - Multiplies [variable_name] by -1
+
+- undo [number]
+  - Undo [number] of previous moves. If no number is specified then 1 move is undone
+
+- done
+  - Stops turtle from taking any more input but holds the window open.
+
+
+Aesthetic Instructions:
+- colour [colour]
   - Sets pen colour. [colour] is either a string from preset list or a hex value.
   - Can also be 3 values
 
-- name, setname [name]
+- randomcolour
+  - Sets pen colour to random RGB value.
+
+- penup, pendown, switchpen
+  - Sets pen up, down or flips pen state
+
+- stamp
+  - Stamp an image of the turtle onto the page.
+
+- dot
+  - Places a dot on the canvas
+
+- name [name]
   - Sets the name of the turtle.
 
-- speed, setspeed [speed]
+- speed [speed]
   - Sets the movement speed of the Turtle, between 1 and 9.
 
-- randcolour
-  - Sets turtle pen colour to random RGB colour.
+- shape [shape]
+  - Sets the turtle shape to the shape specified. These are builtin from turtle.
